@@ -138,6 +138,11 @@ namespace TurtleBot
                     ReactWithNight(e);
                 }
 
+                if (e.Contains("rgb") && e.NotSerious())
+                {
+                    ReactToRgb(e);
+                }
+
                 Task.Run(async () =>
                 {
                     while (ReactionQueue[e.Message].Count > 0)
@@ -269,6 +274,11 @@ namespace TurtleBot
                 ":zzz:",
                 ":crescent_moon:"
             );
+        }
+
+        private static void ReactToRgb (MessageCreateEventArgs e)
+        {
+            e.React(":heart:", ":green_heart:", ":blue_heart:", ":rainbow:");
         }
 
         private static bool Contains (this MessageCreateEventArgs e, params string[] keywords)
